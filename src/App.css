@@ -14,8 +14,8 @@ body {
 
 .grid {
     display: grid;
-    font-weight: 600;
-    font-size: 1.3em;
+    font-weight: 800;
+    font-size: 1.5em;
     grid-template-columns: repeat(9, 1fr);
     margin: auto;
     width: 600px;
@@ -34,28 +34,38 @@ body {
     box-sizing: border-box;
 }
 
-.cell:hover{
-    background-color: #00d9006a;
+.cell:hover {
+    background-color: #00e8003b;
 }
 
-.cell-input{
+.cell-input {
+    color: #5600c7;
     background-color: transparent;
     outline: none;
     border: none;
-    width: 15px;
+    width: 50px;
+    height: 50px;
+    text-align: center;
     caret-color: transparent;
+    border-radius: 5px;
+}
+
+.cell-input:focus {
+    background-color: #00d900a3;
+    box-shadow: 0 0 6px 0px #00d900a3;
+    border: 2px solid #00841d;
 }
 
 /* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 /* Firefox */
 input[type=number] {
-  -moz-appearance: textfield;
+    -moz-appearance: textfield;
 }
 
 @media only screen and (max-width: 630px) {
@@ -64,5 +74,10 @@ input[type=number] {
         height: calc(100vw - 10px);
         font-weight: 500;
         font-size: 1em;
+    }
+
+    .cell-input {
+        width: 30px;
+        height: 30px;
     }
 }
