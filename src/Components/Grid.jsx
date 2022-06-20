@@ -1,4 +1,4 @@
-import { useContext} from "react";
+import { useContext } from "react";
 import DupContext from "../Context/DupContext";
 import GridContext from "../Context/GridContext";
 import { check } from "./utils";
@@ -7,8 +7,75 @@ export default function Grid() {
   const [vals, setVals] = useContext(GridContext);
   const [dups, setDups] = useContext(DupContext);
 
+  function verify(grid, row, col, val) {
+    //return false if found more than one
+    if (val === 0) return 1;
+    let count = 0;
+    for (let i = 0; i < 9; i++) {
+      if (grid[row][i] === val) count++;
+    }
+    if (count > 1) return 1;
+    count = 0;
+    for (let i = 0; i < 9; i++) {
+      if (grid[i][col] === val) count++;
+    }
+
+    if (count > 1) return 1;
+    count = 0;
+
+    for (let i = 0; i < 3; i++) {
+      if (row < 3 && col < 3) {
+        for (let j = 0; j < 3; j++) {
+          if (grid[i][j] === val) count++;
+        }
+      }
+      else if (row < 3 && col < 6) {
+        for (let j = 0; j < 3; j++) {
+          if (grid[i][j + 3] === val) count++;
+        }
+      }
+      else if (row < 3 && col < 9) {
+        for (let j = 0; j < 3; j++) {
+          if (grid[i][j + 6] === val) count++;
+        }
+      }
+      else if (row < 6 && col < 3) {
+        for (let j = 0; j < 3; j++) {
+          if (grid[i + 3][j] === val) count++;
+        }
+      }
+      else if (row < 6 && col < 6) {
+        for (let j = 0; j < 3; j++) {
+          if (grid[i + 3][j + 3] === val) count++;
+        }
+      }
+      else if (row < 6 && col < 9) {
+        for (let j = 0; j < 3; j++) {
+          if (grid[i + 3][j + 6] === val) count++;
+        }
+      }
+      else if (row < 9 && col < 3) {
+        for (let j = 0; j < 3; j++) {
+          if (grid[i + 6][j] === val) count++;
+        }
+      }
+      else if (row < 9 && col < 6) {
+        for (let j = 0; j < 3; j++) {
+          if (grid[i + 6][j + 3] === val) count++;
+        }
+      }
+      else if (row < 9 && col < 9) {
+        for (let j = 0; j < 3; j++) {
+          if (grid[i + 6][j + 6] === val) count++;
+        }
+      }
+    }
+    console.log(count);
+    return (count > 1) ? 1 : 0;
+  }
 
   function putData(ind1, ind2, key, e) {
+    let flag = 0;
     e.preventDefault();
     setVals(
       vals.map((val, i) => {
@@ -20,15 +87,15 @@ export default function Grid() {
             } else {
               if (!check(vals, ind1, ind2, key))
                 setDups([...dups, [ind1, ind2]]);
-              else setDups(dups.filter(row => (JSON.stringify(row) !== JSON.stringify([ind1, ind2]))))
+              else flag = 1;
               return isNaN(key) ? 0 : key;
             }
           } else return v;
         });
       })
     );
+    if (flag) setDups(dups.filter(row=>(verify(vals, row[0], row[1], vals[row[0][row[1]]]))));
   }
-
 
   let i = 0;
   return (
@@ -62,7 +129,7 @@ export default function Grid() {
               className="cell-input"
               maxLength={1}
               onInput={(e) => putData(ind1, ind2, parseInt(e.nativeEvent.data), e)}
-              value={cell? cell: ""}
+              value={cell ? cell : ""}
             />
           </div>
         ))

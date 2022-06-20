@@ -62,10 +62,9 @@ export function check(grid, row, col, val) {
   return true;
 }
 
-
 export function solveGrid(grid, row, col) {
   var cont = 1;
-  const solve= function(grid, row, col){
+  const solve = function (grid, row, col) {
     if (row > 8 && col > 8) return grid;
     else if (row > 8) {
       row = 0;
@@ -73,13 +72,7 @@ export function solveGrid(grid, row, col) {
     }
 
     if (grid[row][col] !== 0) {
-      if (check(grid, row, col, grid[row][col]))
-        return solve(grid, row + 1, col);
-      else {
-        console.log("invalid values");
-        cont = 0;
-        return false;
-      }
+      return solve(grid, row + 1, col);
     }
 
     for (let i = 1; i <= 9; i++) {
@@ -91,6 +84,6 @@ export function solveGrid(grid, row, col) {
       }
     }
     return false;
-  }
-  return solve(grid, row, col)
+  };
+  return solve(grid, row, col);
 }
