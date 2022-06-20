@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import GridContext from "../Context/GridContext";
 import { check } from "./utils";
 
 export default function Grid() {
-  const [vals, setVals] = useState(new Array(9).fill(new Array(9).fill("")));
+  const [vals, setVals] = useContext(GridContext);
   const [dups, setDupes] = useState([]);
   function putData(ind1, ind2, key, e) {
     setVals(
@@ -40,15 +41,12 @@ export default function Grid() {
             id={i++}
             style={{
               borderTopLeftRadius: `${ind1 === 0 && ind2 === 0 ? "10px" : "0"}`,
-              borderBottomLeftRadius: `${
-                ind1 === 8 && ind2 === 0 ? "10px" : "0"
-              }`,
-              borderTopRightRadius: `${
-                ind1 === 0 && ind2 === 8 ? "10px" : "0"
-              }`,
-              borderBottomRightRadius: `${
-                ind1 === 8 && ind2 === 8 ? "10px" : "0"
-              }`,
+              borderBottomLeftRadius: `${ind1 === 8 && ind2 === 0 ? "10px" : "0"
+                }`,
+              borderTopRightRadius: `${ind1 === 0 && ind2 === 8 ? "10px" : "0"
+                }`,
+              borderBottomRightRadius: `${ind1 === 8 && ind2 === 8 ? "10px" : "0"
+                }`,
               borderRightWidth: `${ind2 % 3 === 2 ? "3px" : "1px"}`,
               borderBottomWidth: `${ind1 % 3 === 2 ? "3px" : "1px"}`,
             }}
