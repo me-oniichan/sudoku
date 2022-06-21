@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/sudoku/static/css/main.9000f4f8.css",
+    "main.js": "/sudoku/static/js/main.ab0900f4.js",
+    "static/media/background-blue.webp": "/sudoku/static/media/background-blue.0a338d3859ac01b9b542.webp",
+    "index.html": "/sudoku/index.html",
+    "main.9000f4f8.css.map": "/sudoku/static/css/main.9000f4f8.css.map",
+    "main.ab0900f4.js.map": "/sudoku/static/js/main.ab0900f4.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9000f4f8.css",
+    "static/js/main.ab0900f4.js"
+  ]
+}
