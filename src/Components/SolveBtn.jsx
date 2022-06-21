@@ -20,6 +20,7 @@ export default function SolveButton() {
         let grid = solveGrid(val, 0, 0);
         if (grid) setVal(val.map((v1, i) => (v1.map((v2, j) => (grid[i][j])))))
       }}
+      style={{transition: "0.5s"}}
     >
       Solve <sub>{`${dup.length === 0 ? "" : "Invalid Puzzel"}`}</sub>
     </button>

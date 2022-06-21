@@ -15,7 +15,7 @@ body {
 .App {
   margin: auto;
   font-family: cursive, sans-serif;
-  transition: 0.3s;
+  transition: width 1s;
 }
 
 .grid {
@@ -81,6 +81,16 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
+.btn-primary{
+  width: 100px;
+}
+
+.btn-danger{
+  width: 200px;
+  white-space: nowrap;
+}
+
 
 @media only screen and (max-width: 630px) {
   .grid {
