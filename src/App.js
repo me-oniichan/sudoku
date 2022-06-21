@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./App.css";
 import Grid from "./Components/Grid";
+import Reset from "./Components/Reset";
 import SolveButton from "./Components/SolveBtn";
 import DupContext from "./Context/DupContext";
 import GridContext from "./Context/GridContext";
@@ -14,6 +15,7 @@ function App() {
         <div className="App">
           <Grid />
           <SolveButton />
+          <Reset/>
         </div>
       </DupContext.Provider>
     </GridContext.Provider>

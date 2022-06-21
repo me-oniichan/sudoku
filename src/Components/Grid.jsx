@@ -83,21 +83,21 @@ export default function Grid() {
           if (i2 === ind2 && i === ind1) {
             if ((key === "+" || key === "-" || e.keyCode === 190 || key === "e" || key === 0) && e.preventDefault()) {
               return v;
-            } 
+            }
             else {
               if (!check(vals, ind1, ind2, key)) {
                 dups.push([ind1, ind2])
                 setDups(dups);
               }
               else flag = 1;
-              temp[ind1][ind2] = isNaN(key) ? 0 : key; 
+              temp[ind1][ind2] = isNaN(key) ? 0 : key;
               return isNaN(key) ? 0 : key;
             }
           } else return v;
         });
       })
     );
-    if (flag) setDups(dups.filter(row=>(verify(temp, row[0], row[1], temp[row[0]][[row[1]]]))));
+    if (flag) setDups(dups.filter(row => (verify(temp, row[0], row[1], temp[row[0]][[row[1]]]))));
   }
 
   let i = 0;
