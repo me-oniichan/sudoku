@@ -3,8 +3,8 @@ import DupContext from "../Context/DupContext";
 import GridContext from "../Context/GridContext";
 
 export default function Reset() {
-    const [val, setVal] = useContext(GridContext);
-    const [dup, setDup] = useContext(DupContext);
+    const setVal = useContext(GridContext)[1];
+    const setDup = useContext(DupContext)[1];
 
     return (
         <button className="btn btn-warning btn-lg m-2" onClick={(e) => {
