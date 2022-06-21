@@ -8,7 +8,7 @@ export default function Grid() {
   const [dups, setDups] = useContext(DupContext);
 
   function verify(grid, row, col, val) {
-    //return false if found more than one
+    //return true if found more than one
     if (val === 0) return 1;
     let count = 0;
     for (let i = 0; i < 9; i++) {
@@ -70,31 +70,34 @@ export default function Grid() {
         }
       }
     }
-    console.log(count);
     return (count > 1) ? 1 : 0;
   }
 
   function putData(ind1, ind2, key, e) {
     let flag = 0;
-    e.preventDefault();
+    let temp = vals;
     setVals(
       vals.map((val, i) => {
         if (i !== ind1) return val;
         return val.map((v, i2) => {
           if (i2 === ind2 && i === ind1) {
-            if (key === "+" || key === "-" || key === "." || key === "e" || key === 0) {
+            if ((key === "+" || key === "-" || e.keyCode === 190 || key === "e" || key === 0) && e.preventDefault()) {
               return v;
-            } else {
-              if (!check(vals, ind1, ind2, key))
-                setDups([...dups, [ind1, ind2]]);
+            } 
+            else {
+              if (!check(vals, ind1, ind2, key)) {
+                dups.push([ind1, ind2])
+                setDups(dups);
+              }
               else flag = 1;
+              temp[ind1][ind2] = isNaN(key) ? 0 : key; 
               return isNaN(key) ? 0 : key;
             }
           } else return v;
         });
       })
     );
-    if (flag) setDups(dups.filter(row=>(verify(vals, row[0], row[1], vals[row[0][row[1]]]))));
+    if (flag) setDups(dups.filter(row=>(verify(temp, row[0], row[1], temp[row[0]][[row[1]]]))));
   }
 
   let i = 0;
